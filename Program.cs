@@ -9,8 +9,8 @@ namespace APSIM.Builds.Migrator
         public static int Main(string[] args)
         {
             Console.WriteLine("Migrating old apsim data...");
-            // MigratorClassic migrator = new MigratorClassic();
-            // migrator.Run();
+            MigratorClassic migrator = new MigratorClassic();
+            migrator.Run();
             Console.WriteLine("Done.");
 
             Console.WriteLine("Migrating next gen data...");
