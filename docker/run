@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Script to migrate data to new builds DB.
+#
+set -euo pipefail
+
+# Ensure the required environment variables are set.
+test -n "$MARIADB_PASSWORD"
+
+# Get directory containing the script. The dockerfile will also be in this directory.
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Build the docker image
+docker build -f "$DIR/Dockerfile" -t apsiminitiative/apsim-builds-migrator:latest "$DIR"
+
+# Run the image.
+#docker run --rm -it --network builds_db -e "MARIADB_ROOT_PASSWORD=${MARIADB_PASSWORD}" --name apsim-builds-migrator apsiminitiative/apsim-builds-migrator:latest
